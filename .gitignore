@@ -62,6 +62,8 @@ posix-configs/SITL/init/test/*_generated
 /parameters.xml
 /modules
 
+update_sitl.sh
+
 *.gcov
 .coverage
 .coverage.*

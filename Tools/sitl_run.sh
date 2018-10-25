@@ -8,6 +8,7 @@ program="$3"
 model="$4"
 src_path="$5"
 build_path="$6"
+current_world="$7"
 
 echo SITL ARGS
 
@@ -17,6 +18,7 @@ echo program: $program
 echo model: $model
 echo src_path: $src_path
 echo build_path: $build_path
+echo current_world: $current_world
 
 rootfs="$build_path/tmp/rootfs" # this is the working directory
 mkdir -p "$rootfs"
@@ -40,6 +42,12 @@ if [ "$model" == "" ] || [ "$model" == "none" ]
 then
 	echo "empty model, setting iris as default"
 	model="iris"
+fi
+
+if [ "$current_world" == "" ] || [ "$current_world" == "none" ]
+then
+	echo "empty current_world, setting the same world as model"
+	current_world=${model}
 fi
 
 if [ "$#" -lt 6 ]
@@ -74,7 +82,7 @@ then
 			# Set the plugin path so Gazebo finds our model and sim
 			source $src_path/Tools/setup_gazebo.bash ${src_path} ${build_path}
 
-			gzserver --verbose ${src_path}/Tools/sitl_gazebo/worlds/${model}.world &
+			gzserver --verbose ${src_path}/Tools/sitl_gazebo/worlds/${current_world}.world &
 			SIM_PID=`echo $!`
 
 			if [[ -n "$HEADLESS" ]]; then
