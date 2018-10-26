@@ -1,3 +1,4 @@
+mavlink start -x -u 14558 -r 4000 -f -m onboard -o 14530
 
 # shellcheck disable=SC2154
 mavlink stream -r 10 -s DISTANCE_SENSOR -u $udp_gcs_port_local
