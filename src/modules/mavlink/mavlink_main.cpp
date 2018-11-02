@@ -109,7 +109,7 @@
 #define MAVLINK_NET_ADDED_STACK 0
 #endif
 
-#define DEFAULT_REMOTE_PORT_UDP			14550 ///< GCS port per MAVLink spec
+#define DEFAULT_REMOTE_PORT_UDP		14550 ///< GCS port per MAVLink spec
 #define DEFAULT_DEVICE_NAME			"/dev/ttyS1"
 #define MAX_DATA_RATE				10000000	///< max data rate in bytes/s
 #define MAIN_LOOP_DELAY 			10000	///< 100 Hz @ 1000 bytes/s data rate
@@ -262,9 +262,11 @@ Mavlink::Mavlink() :
 #endif
 	_socket_fd(-1),
 	_protocol(SERIAL),
-	_network_port(14556),
-	_remote_port(DEFAULT_REMOTE_PORT_UDP),
-	_message_buffer {},
+    _network_port(14556),
+    //_network_port(15556),
+    _remote_port(DEFAULT_REMOTE_PORT_UDP),
+
+    _message_buffer {},
 	_message_buffer_mutex {},
 	_send_mutex {},
 
